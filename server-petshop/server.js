@@ -1,19 +1,9 @@
-const customExpress = require('./config/custom-express')
-const conexao = require('./infraestrutura/conexao')
-const Tabelas = require('./infraestrutura/database/tabelas')
+const customExpress = require("./config/custom-express");
+const Tabelas = require("./infraestrutura/database/tabelas");
 
-const app = customExpress()
+const app = customExpress();
+Tabelas.init();
 
-conexao.connect(erro => {
-  if (erro) {
-    console.log(erro)
-  }
-
-  console.log('conectou no banco')
-
-  Tabelas.init(conexao)
-})
-
-app.listen(4000, () => {
-  console.log('Servidor rodando na porta 4000')
-})
+app.listen(5000, () => {
+  console.log("Servidor rodando na porta 5000");
+});
